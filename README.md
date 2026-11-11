@@ -1,112 +1,80 @@
-# MIJAS LTD – premium web stranica (demo)
+# MIJAS LTD – web stranica (revizija prema PDF nalogu, 11.11.2026.)
 
-Kompletna statička web stranica izrađena kao prezentacijski demo za MIJAS LTD j.d.o.o.
-Tehnologija: HTML, CSS, JavaScript, AVIF, Cloudflare Pages Functions. Bez frameworka i npm builda.
+Statički HTML/CSS/JavaScript projekt s postojećim fotografijama, originalnom uvodnom animacijom, 14 HTML ruta i poslužiteljskom Cloudflare Pages Function za upite. Izvor sadržaja nalazi se u **`tools/build.py`**. Nemojte uređivati generirane HTML datoteke, jer ih generator prepisuje.
 
-## Sadržaj
+## Postavljanje na GitHub i Cloudflare Pages
 
-- Početna s uvodnom animacijom logotipa (približno 2,9 s, uključujući izlazni prijelaz), prikazuje se jednom po sesiji i može se preskočiti.
-- O nama, pregled usluga i šest zasebnih SEO podstranica.
-- Područja primjene s filtriranjem (ne tvrdi da su ilustracije stvarne reference).
-- Kontakt s obrascem i poslužiteljskom Cloudflare Function funkcijom.
-- Politika privatnosti, uvjeti korištenja, cookie banner, posebna 404 stranica.
-- Mobilna navigacija, animacije, favicon, SEO metapodaci i dinamički `/sitemap.xml` za Cloudflare.
-- `robots.txt` i `_headers` namjerno blokiraju indeksiranje dok je projekt demo.
+1. Raspakirajte ZIP i prenesite **sve datoteke i mape** u korijen novog GitHub repozitorija (bez dodatne vanjske mape).
+2. Cloudflare → Workers & Pages → Create → Pages → povežite GitHub repozitorij.
+3. `Framework preset`: **None**.
+4. `Build command`: **`python3 tools/deploy.py`**.
+5. `Build output directory`: **`dist`**.
+6. Deployment objavljuje samo HTML, javne skripte, fotografije i ostale statičke datoteke iz mape **`dist`**. Mapa `tools/` i datoteke `README.md`, `ZAVRSNA-PROVJERA.md` **nisu javne**, premda ostaju u GitHub repozitoriju. Serverless funkcije u `functions/` ostaju u korijenu repozitorija radi Cloudflare Pages Functions.
+7. Ako build okruženje ne nudi `python3`, unaprijed generirana mapa `dist/` već je uključena: ostavite Build command prazan i kao izlaz odaberite `dist`. Nakon budućih promjena tada morate lokalno pokrenuti `python3 tools/deploy.py` i prenijeti ažurirani `dist/`.
 
-## GitHub + Cloudflare Pages
+**Za demo:** ne postavljajte `PUBLIC_SITE_URL`. `robots.txt` i `_headers` sprječavaju indeksaciju. ZIP je pripremljen kao demo, ne kao javna službena stranica.
 
-1. Napravite novi GitHub repozitorij, npr. `mijas-ltd`.
-2. **Raspakirajte ZIP** i prenesite sve datoteke i mape iznutra u korijen repozitorija. `index.html`, `assets/` i `functions/` trebaju biti u korijenu.
-3. Cloudflare Dashboard → Workers & Pages → Create application → Pages → Connect to Git.
-4. Odaberite GitHub repozitorij. Framework preset: **None**, Build command: **ostaviti prazno**, Build output directory: `.` (korijen repozitorija).
-5. Deploy. Cloudflare Pages automatski servira HTML, CSS, AVIF, te `functions/api/contact.js` i `functions/sitemap.xml.js`.
-6. Testirajte početnu, navigaciju, podstranice i `/sitemap.xml` na novoj Cloudflare adresi.
+## Obavezno potvrditi kontakt informacije
 
-### Aktivacija kontakt obrasca
+U `tools/business_details.json` popunjavajte isključivo podatke koje je tvrtka MIJAS LTD **izričito odobrila za javnu objavu**:
 
-Prije stvarnog slanja kontakt upita:
-1. Vlasnik treba potvrditi službenu e-mail adresu na koju će stizati upiti.
-2. U servisu Web3Forms kreirajte i verificirajte pristupni ključ za tu adresu.
-3. Cloudflare Pages projekt → Settings → Variables and Secrets → dodajte **secret** naziva `WEB3FORMS_ACCESS_KEY`, vrijednost preuzetu iz Web3Forms računa. Dodajte za okruženje u kojem obrazac treba raditi.
-4. Pokrenite novi deployment i testirajte slanje sa stvarnom probnom porukom te provjerite da je primljena na poslovnu e-mail adresu.
+- `public_phone`: službeni broj telefona. Nakon unosa prikazuje se `tel:` poveznica u zaglavlju, kontaktu, podnožju i mobilna ikona za poziv.
+- `public_email`: službena e-mail adresa; pojavljuje se na Kontakt stranici i u podnožju.
+- `public_whatsapp`: ako ga tvrtka koristi i odobri.
+- `public_working_hours`: točno radno vrijeme.
+- `confirmed_service_towns`: samo potvrđena mjesta rada, za strukturirane podatke i budući tekst.
 
-Bez ključa obrazac **namjerno vraća poruku da još nije aktiviran**. Nikada se ne prikazuje lažna potvrda slanja.
+Broj i e-mail iz Meta lead obrasca **nisu automatski službeni kontakti**. Dok ih vlasnik ne odobri, stranica ima ispravan CTA „Pošaljite upit” koji vodi na obrazac, bez lažnih kontakata.
 
-### Analytics
+Treba potvrditi i rok odgovora, rok dolaska, naplatu izlaska, jamstva, izdavanje računa, nabavu materijala, sve stvarne usluge te fotografije izvedenih radova. Ništa od toga nije izmišljeno.
 
-Postavke su u `assets/js/config.js`:
+## Aktiviranje kontaktnog obrasca
 
-```js
-window.MIJAS_CONFIG = Object.freeze({
-  ga4Id: '',
-  analyticsEnabled: false,
-  contactEndpoint: '/api/contact'
-});
-```
+`functions/api/contact.js` koristi Web3Forms na poslužitelju, bez javno izloženog pristupnog ključa.
 
-Nakon što klijent potvrdi GA4 mjerni ID i politiku privatnosti, postavite `ga4Id` i `analyticsEnabled: true`. GA4 se učitava isključivo kada je korisnik odabrao analitičku privolu.
+1. Potvrdite službenu adresu za dolazne poruke.
+2. Otvorite Web3Forms račun i verificirajte primatelja upita.
+3. U Cloudflare Pages → Settings → Variables and Secrets dodajte secret `WEB3FORMS_ACCESS_KEY` u odgovarajuće okruženje.
+4. Ponovno pokrenite deployment.
+5. Pošaljite probni upit na pravoj Cloudflare adresi i potvrdite primitak poruke na odredišnu adresu.
 
-### Produkcijska domena i indeksiranje
+Bez ključa endpoint vraća HTTP 503 i **ne potvrđuje lažno slanje**. Lokalni Python HTTP server također ne izvršava Cloudflare Functions.
 
-**Važno: stranica je namjerno u DEMO modu.** Ona nije automatski spremna za indeksiranje.
+## Produkcijski SEO – tek po odobrenju klijenta
 
-Nakon odobrenja klijenta, potvrde domene, podataka i pravnih tekstova pokrenite u korijenu projekta:
+Nakon pisane potvrde domene, teksta, usluga, javnih kontakata i pravnih podataka:
 
-```bash
-python tools/prepare_production.py https://stvarna-domena.hr
-```
+1. U Cloudflare Pages **production environment** postavite `PUBLIC_SITE_URL=https://stvarna-domena.hr` (bez završne `/`).
+2. Ako produkcijska grana nije `main`, postavite `PRODUCTION_BRANCH=ime-grane`.
+3. Build `python3 tools/deploy.py` tada na produkcijskoj grani automatski izvršava redom: `build.py` → `prepare_production.py` → `publish.py`. Preview grane ostaju blokirane za indeksiranje.
+4. Provjerite apsolutni canonical, `og:image`, `og:url`, `/sitemap.xml`, `/robots.txt` i HTTP zaglavlja.
+5. Tek tada dodajte stranicu u Google Search Console / Google Business Profile.
 
-Skripta:
-- pretvara relativne canonical adrese u apsolutne produkcijske URL-ove;
-- postavlja apsolutnu OG sliku i `og:url`;
-- generira statički `sitemap.xml` sa stvarnom domenom;
-- mijenja `robots.txt` na indeksabilnu verziju;
-- uklanja `X-Robots-Tag: noindex, nofollow` iz `_headers`.
-
-**Nemojte pokretati prije odobrenja klijenta.** Ako kasnije ponovno pokrenete `tools/build.py`, ponovno pokrenite i produkcijsku skriptu prije deploya.
-
-### Podaci koje treba potvrditi s klijentom
-
-- Da je pronađeni Mijas LTD j.d.o.o. doista klijent koji je poslao upit.
-- Registrirane i **stvarno aktivne** vrste usluga; opseg i eventualna potrebna ovlaštenja.
-- Područja poslovanja i izlazak na teren.
-- Službeni logo, telefon, poslovni e-mail, WhatsApp.
-- Pravo korištenja stvarnih fotografija i eventualnih referenci.
-- Status adrese sjedišta za javni prikaz i Google poslovni profil.
-- Korištene vanjske usluge, rokovi čuvanja podataka i konačna pravna provjera.
-- Produkcijska domena i Analytics ID.
-
-## Fotografije
-
-Fotografije industrijske opreme i instalacija u ovom demu **ilustrativni su vizuali** i nisu dokaz radova ili stvarnih referenci tvrtke. Prije konačne objave preporučuje se zamjena fotografijama radova koje dostavi tvrtka uz dopuštenje za javnu objavu.
-
-Svi bitmap vizuali u `assets/images/` lokalno su optimizirani u AVIF. Datoteka `og-cover.jpg` služi za društvene mreže. Logo i favicon su lokalni SVG.
-
-## Lokalno pokretanje
-
-U korijenu projekta:
+**Ako ručno pripremate produkciju:**
 
 ```bash
-python -m http.server 8000
+python3 tools/build.py
+python3 tools/prepare_production.py https://stvarna-domena.hr
+python3 tools/publish.py
 ```
 
-Otvorite `http://localhost:8000`. Običan lokalni HTTP server ne pokreće Cloudflare Pages Functions. Slanje forme testirati na Cloudflareu ili uz Wrangler Pages dev.
+Nemojte nakon pripreme produkcije još jednom pokrenuti `build.py` bez ponavljanja `prepare_production.py` jer će se vratiti demo oznake.
 
-## Struktura
+## Provjera
 
-- `index.html` – početna.
-- `o-nama/`, `usluge/`, `projekti/`, `kontakt/` – podstranice.
-- `politika-privatnosti/`, `uvjeti-koristenja/` – pravne stranice.
-- `404.html` – posebna greška stranice.
-- `assets/css/style.css` – cijeli dizajn sustav.
-- `assets/js/main.js` – intro, mobilna navigacija, GDPR, animacije, forme.
-- `assets/js/config.js` – konfiguracija.
-- `functions/api/contact.js` – Cloudflare poslužiteljska kontakt funkcija.
-- `functions/sitemap.xml.js` – sitemap s ispravnom domenom deploymenta.
-- `tools/build.py` – izvorni generator sadržaja.
-- `tools/prepare_production.py` – aktivacija produkcijskog SEO-a.
-- `ZAVRSNA-PROVJERA.md` – detaljna provjera 20 stavki.
+```bash
+python3 tools/qa_static.py
+python3 tools/qa_static.py dist
+```
 
-## Napomena
+Korisni sadržaji:
+- `tools/build.py` – generator svih stranica i SEO metapodataka.
+- `tools/business_details.json` – centralno mjesto za *potvrđene* kontakte.
+- `tools/deploy.py` – automatizirani Cloudflare build.
+- `tools/prepare_production.py` – aktiviranje produkcijskih SEO postavki.
+- `tools/publish.py` – javni artefakt bez izvornog generatora i internih dokumenata.
+- `ZAVRSNA-PROVJERA.md` – detaljne realizirane promjene i otvorene stavke.
 
-Ovaj ZIP je **potpuno upotrebljiv demo**, ali bez potvrđenih poslovnih kontakata i stvarnog Web3Forms pristupnog ključa još nije završena produkcijska objava. Nužno je dovršiti integraciju i provjeru s klijentom.
+## Dizajn i mediji
+
+Postojeće fotografije i SVG logotip ostali su nepromijenjeni. Intro u `intro()` i svi `.intro-*` CSS stilovi ostali su isti. Font Inter nije bio učitan, pa je iz neispravne font liste uklonjen; stranica sada eksplicitno koristi postojeći sistemski font `Segoe UI` / Arial bez uključivanja vanjskog CDN-a. U CSS-u su dodatno prilagođeni isključivo selektori za promijenjenu HTML hijerarhiju i mreža skraćenog procesa. Pri objavi stvarnih referenci postojeće ilustrativne prikaze treba zamijeniti dopuštenim fotografijama klijenta.

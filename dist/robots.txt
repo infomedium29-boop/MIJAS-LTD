@@ -1,0 +1,3 @@
+# DEMO environment: do not index until client approves production launch.
+User-agent: *
+Disallow: /

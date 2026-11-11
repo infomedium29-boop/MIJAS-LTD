@@ -18,10 +18,11 @@ export async function onRequestPost({ request, env }) {
   if (!name || name.length > 110 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 160 || phone.length > 40 || !location || location.length > 120 || !service || service.length > 80 || message.length < 15 || message.length > 3500) {
     return reply(400, 'Provjerite obavezna polja obrasca.');
   }
+  const preferredTime = clean('preferred_time').slice(0, 60);
   const subject = 'MIJAS LTD – novi upit s web stranice';
   const payload = {
     access_key: env.WEB3FORMS_ACCESS_KEY, name, email, phone, subject,
-    message: `Vrsta usluge: ${service}\nLokacija: ${location}\nTelefon: ${phone || '(nije naveden)'}\n\nOpis projekta:\n${message}`,
+    message: `Vrsta usluge: ${service}\nLokacija: ${location}\nŽeljeni termin: ${preferredTime || '(nije naveden)'}\nTelefon: ${phone || '(nije naveden)'}\n\nOpis projekta:\n${message}`,
     from_name: 'MIJAS LTD web obrazac', replyto: email,
   };
   try {

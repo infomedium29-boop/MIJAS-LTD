@@ -1,9 +1,9 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 from collections import Counter
-import re
-ROOT=Path(__file__).resolve().parents[1]
-html_files=sorted(ROOT.rglob('index.html'))
+import re,sys
+ROOT=Path(sys.argv[1]).resolve() if len(sys.argv)>1 else Path(__file__).resolve().parents[1]
+html_files=sorted(p for p in ROOT.rglob('index.html') if not any(x in p.relative_to(ROOT).parts for x in ('dist','tools','.git')))
 errors=[]; external=set(); title_set=[];desc_set=[]
 for html in html_files:
  soup=BeautifulSoup(html.read_text(encoding='utf-8'),'html.parser')

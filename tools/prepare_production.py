@@ -13,14 +13,15 @@ if u.scheme!='https' or not u.hostname or '.' not in u.hostname or u.hostname.en
  raise SystemExit('Provide confirmed HTTPS production domain, e.g. https://actual-domain.hr')
 paths=[]
 for p in root.rglob('index.html'):
- if p.parts and 'tools' in p.parts: continue
+ if any(x in p.relative_to(root).parts for x in ('tools','dist','.git')): continue
  path='/' if p.parent==root else '/'+p.parent.relative_to(root).as_posix()+'/'
  if path=='/404/': continue
  paths.append(path)
  for target in (p,):
   content=target.read_text(encoding='utf-8')
   content=re.sub(r'(<link rel="canonical" href=")[^"]+("\s*>)',lambda m:m[1]+html.escape(origin+path,quote=True)+m[2],content)
-  content=content.replace('<meta property="og:image" content="/assets/images/hero.avif">',f'<meta property="og:image" content="{html.escape(origin,quote=True)}/assets/images/og-cover.jpg">')
+  content=re.sub(r'(<meta property="og:image" content=")[^"]+("\s*>)',lambda m:m[1]+html.escape(origin,quote=True)+'/assets/images/og-cover.jpg'+m[2],content)
+  content=re.sub(r'<meta property="og:url" content="[^"]+">','',content)
   content=content.replace('<meta name="twitter:card" content="summary_large_image">',f'<meta property="og:url" content="{html.escape(origin+path,quote=True)}"><meta name="twitter:card" content="summary_large_image">')
   target.write_text(content,encoding='utf-8')
 root.joinpath('404.html').write_text(root.joinpath('404/index.html').read_text(encoding='utf-8'),encoding='utf-8')

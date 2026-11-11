@@ -69,15 +69,6 @@
     }, { threshold: .08, rootMargin: '0px 0px 20px 0px' });
     reveal.forEach(el => observer.observe(el));
   } else reveal.forEach(el => el.classList.add('in-view'));
-  // Filter representative areas by type.
-  const filterBar = $('.filter-bar');
-  filterBar?.addEventListener('click', event => {
-    const button = event.target.closest('button[data-filter]');
-    if (!button) return;
-    const filter = button.dataset.filter;
-    $$('button[data-filter]', filterBar).forEach(b => b.setAttribute('aria-pressed', String(b === button)));
-    $$('.project-card').forEach(card => { card.hidden = filter !== 'all' && card.dataset.category !== filter; });
-  });
   // Consent choices: do not add tracking cookies or third-party analytics before opt-in.
   const COOKIE_KEY = 'mijas-cookie-consent-v1';
   const banner = $('#cookie-banner');
@@ -144,7 +135,7 @@
     const data = Object.fromEntries(new FormData(form).entries());
     if (data.message.trim().length < 15) { say('Opis projekta treba sadržavati najmanje 15 znakova.'); return; }
     button.disabled = true;
-    button.dataset.originalLabel = button.textContent;
+    const originalHTML = button.innerHTML;
     button.textContent = 'Šaljemo upit…';
     say('', 'success');
     try {
@@ -157,6 +148,6 @@
       say('Hvala na upitu. Poruka je uspješno zaprimljena.', 'success');
       if (consent?.analytics && analyticsLoaded && window.gtag) window.gtag('event', 'generate_lead');
     } catch (error) { say(error.message || 'Slanje nije uspjelo. Pokušajte ponovno kasnije.'); }
-    finally { button.disabled = false; button.textContent = 'Pošaljite upit →'; }
+    finally { button.disabled = false; button.innerHTML = originalHTML; }
   });
 })();

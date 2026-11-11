@@ -1,0 +1,5 @@
+# Clean canonical routes for the static site
+/o-nama /o-nama/ 301
+/usluge /usluge/ 301
+/projekti /projekti/ 301
+/kontakt /kontakt/ 301

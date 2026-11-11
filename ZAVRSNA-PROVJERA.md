@@ -1,50 +1,70 @@
-# MIJAS LTD – završna kontrola kvalitete
+# MIJAS LTD – završni izvještaj revizije (11. studenoga 2026.)
 
-Datum: 11.11.2026.  
-Vrsta isporuke: **prezentacijski demo**, pripremljen za GitHub + Cloudflare Pages.
+Temelj: korisnički PDF „MIJAS LTD – nalog za izmjene teksta i tehničke ispravke” (18 stranica). Izvorni ZIP nije zamijenjen predloškom. Sadržaj je izmijenjen u `tools/build.py`, zatim su generirane HTML stranice. Izvorni intro i fotografije nisu mijenjani.
 
-Oznake: ✅ Implementirano i provjereno · ⚠️ Potrebna dodatna konfiguracija/test · ❌ Nije implementirano.
+## Realizacija po poglavljima naloga
 
-| # | Stavka | Status | Rezultat |
-|---|---|---|---|
-| 1 | Privacy Policy | ⚠️ | Uključena politika privatnosti s poznatim poslovnim podacima; prije produkcije provjeriti stvarne pružatelje usluga, rokove čuvanja i zakonitost obrade. |
-| 2 | Terms Page | ⚠️ | Stranica uvjeta korištenja postoji; finalnu verziju treba odobriti tvrtka / pravna osoba. |
-| 3 | Clear CTA | ✅ | CTA na hero sekciji, stranicama usluga, footeru i zasebnoj kontakt stranici. |
-| 4 | FAQ | ✅ | FAQ s funkcionalnim HTML details/summary elementima. |
-| 5 | robots.txt | ✅ | Valjani demo robots.txt blokira indeksiranje. Produkcijsko aktiviranje kroz skriptu. |
-| 6 | sitemap.xml | ⚠️ | Cloudflare Pages Function automatski servira `/sitemap.xml`; treba provjeriti na stvarnom deployu. Produkcijska skripta stvara statičku datoteku. |
-| 7 | Custom 404 | ✅ | Postoji `404.html` s povratkom na početnu. |
-| 8 | ALT Text | ✅ | Provjereno da prikazane IMG fotografije imaju ALT opise. |
-| 9 | Analytics | ⚠️ | GA4 skripta i mjerenje događaja spremni; GA4 ID nije dostavljen, analytics je isključen. |
-| 10 | Meta Titles | ✅ | Jedinstven naslov na svim glavnim stranicama. |
-| 11 | Meta Description | ✅ | Jedinstven opis na svim glavnim stranicama. |
-| 12 | Social Share | ⚠️ | OG i Twitter oznake postoje te JPG preview slika; apsolutne OG URL-ove postaviti nakon potvrde domene. |
-| 13 | Favicon | ✅ | Dostavljen lokalni SVG favicon. |
-| 14 | Canonical URLs | ⚠️ | Demo koristi relativne canonicals; produkcijska skripta pretvara ih u apsolutne na potvrđenoj domeni. |
-| 15 | Cookie Consent | ✅ | Prihvati, odbij, postavke, lokalno spremanje; GA4 ne učitava se bez privole. |
-| 16 | Mobile Version | ✅ | Provjeren prikaz početne na 320, 375, 390, 768, 1024, 1440 i 1920 px te kontakta na 320, 390, 768 i 1440 px, bez horizontalnog overflowa. |
-| 17 | Accessibility | ⚠️ | Semantički HTML, ALT, labele, skip link, keyboard focus i reduced motion; nije napravljen potpuni neovisni WCAG 2.2 AA audit. |
-| 18 | Test Forms | ⚠️ | Validacija obrazaca testirana; simulirani uspješan odgovor funkcionira. Stvarno slanje zahtijeva Web3Forms secret, deploy i end-to-end provjeru. |
-| 19 | Check Broken Links | ✅ | Provjera internih putanja u generiranim HTML datotekama. Vanjski Maps link je opći Google Maps URL, funkcionalnost se potvrđuje nakon deploya. |
-| 20 | Optimise Performance | ⚠️ | Lokalni AVIF, bez UI frameworka i velikih ovisnosti, odgođeno učitavanje fotografija; nije izvršen stvarni Lighthouse/Core Web Vitals audit na javnom URL-u. |
+| Poglavlje | Rezultat | Status |
+|---|---|---|
+| A – Gramatika i ALT | 6 ručno definiranih završnih CTA poruka, konkretni ALT opisi, uklonjeni neispravni izrazi | ✅ |
+| B – Naslovi | Upravo tri `<em>` u H1 (početna, O nama, kontakt); opisni H1 za šest usluga; jednostavniji H2 | ✅ |
+| C – Rečenice bez sadržaja | Uklonjeni aforizmi, generičke fraze, upadljiva ponavljanja i poruke demo-faze. Ne navode se nepoznate godine, jamstva ili rokovi | ✅ |
+| D – FAQ | 5 pitanja na početnoj i po 3 različita za svaku od 6 usluga (23 različita pitanja). Nema neprovjerenih tvrdnji o dostupnosti radova, cijeni izlaska ili jamstvu | ✅ za sadašnje odgovore; ⚠️ kupčeva pitanja o cijeni, rokovima, R1 i materijalu traže potvrdu |
+| E – Kontakt | Ugrađena centralna konfiguracija potvrđenog telefona/e-maila/WhatsAppa; dinamički `tel:`, `mailto:` i mobilna ikona poziva; obrazac sada pita željeni termin; SVG gumba se ispravno vraća | ✅ kod; ⚠️ javni podaci i Web3Forms secret nisu dostavljeni |
+| F – Ponavljanja | Različiti FAQ po usluzi; specifični CTA; posebno objašnjenje za grijanje i popis pripreme za adaptaciju; posebni meta opisi | ✅ |
+| G – Sekcije | Uklonjena generička tamna sekcija i „Naš pristup”; proces je sveden na 3 konkretna koraka; brojevi ostaju samo uz kartice usluga; uklonjen suvišni filtar četiriju kartica | ✅ |
+| H – Mikrokopija | Jednostavni tekstovi tipki, „Radovi” umjesto „Primjena”, novi doslovni nadnaslovi, novi potpis uz logo | ✅ |
+| I – Tehnika | Uklonjen neučitan Inter iz font-stacka; ispravljen produkcijski `og:image`, uklonjen `telephone=no`; hijerarhija H3 u karticama; SEO schema s dodatnim poljima kad podaci postanu dostupni | ✅ tehničke ispravke; ⚠️ stvarna domena, telefon, radno vrijeme |
+| J – Objava | `tools/publish.py` objavljuje samo `dist/`; interni izvori i izvještaji nisu u javnom outputu; produkcijska skripta testirana na hipotetskoj domeni; demo ostaje `noindex` | ✅ |
+| K – Podaci klijenta | Izdvojeni u ovom izvještaju i `tools/business_details.json`, bez izmišljanja | ⚠️ čeka potvrdu |
+| L – Kontrola | Automatizirana kontrola HTML ruta, meta podataka, poveznica, sadržaja, OG, robots, sitemap i javnih datoteka; vizualni browser test i dostava e-maila nisu dovršeni | ⚠️ dio ručnih provjera preostaje |
 
-## Rezultat
+## Rezultati provjera
 
-- Izrađeno **14 HTML ruta** + Cloudflare prilagođeni `404.html`.
-- Intro s ispisivanjem marke i naziva, ukupno ~2,9 sekundi do završetka izlaznog prijelaza.
-- Sve stranice uključuju navigaciju, footer, cookie postavke i meta oznake.
-- Stvarni osobni kontakt iz Meta leada nije objavljen kao službeni kontakt.
-- Područja primjene i vizuali predstavljeni su kao ilustracije, a ne izmišljene reference.
-- Demo je namjerno blokiran za indeksiranje (`robots.txt`, `X-Robots-Tag`).
+- **14 HTML ruta**, 14 različitih title oznaka, 14 različitih meta opisa.
+- **0 nepostojećih internih poveznica** u lokalnoj statičkoj analizi izvora i mape `dist`.
+- **3** stilizirana `<em>` naslova u generiranim stranicama.
+- **23** različita FAQ pitanja, **0** ponavljanja.
+- Nema „Trebate klimatizacija”, „Trebate sustavi”, „Trebate odvodnja”, „Otkrijte uslugu”, „Ilustrativni prikaz”, „format-detection”, „završnoj verziji” ni „nakon njezine konfiguracije” u HTML-u.
+- `intro()` uspoređen s izvornim ZIP-om: **bajtno identičan**.
+- Svi izvorni slikovni, SVG i OG resursi uspoređeni s izvornim ZIP-om: **identični**.
+- `node --check` za `assets/js/main.js` i `functions/api/contact.js`: bez sintaktičkih grešaka.
+- Provjera testne produkcijske izgradnje: apsolutni canonical, apsolutni `og:image`, `og:url`, robots, sitemap (**13 indeksabilnih URL-ova**) te odsutnost internih datoteka u `dist`: uspješno.
+- **Vizualni pregled Chromiumom nije prošao**, jer se preglednik u ovom okruženju nije uspješno pokrenuo. Stoga nisam označio mobilnu vizualnu kontrolu kao potvrđenu.
+- **Stvarno slanje kontaktnog obrasca nije testirano**, jer nije dostavljen Web3Forms ključ ni službena e-mail adresa.
 
-## Zadaci prije javne objave
+## Obavezna web checklista – 20 stavki
 
-1. Od klijenta potvrditi identitet, usluge, područje rada, logo i javne kontakt podatke.
-2. Nadomjestiti ilustrativne fotografije stvarnim odobrenim materijalima gdje su dostupni.
-3. Aktivirati i stvarno testirati kontaktni obrazac preko Web3Forms/Cloudflare.
-4. Provjeriti i finalizirati GDPR i pravne tekstove prema stvarnoj obradi podataka.
-5. Po potrebi konfigurirati GA4 s ispravnom privolom.
-6. Nakon potvrde domene pokrenuti `tools/prepare_production.py` i dopustiti indeksiranje.
-7. Na javnom URL-u provjeriti Lighthouse, mobitele, obrazac, Cloudflare Functions i sitemap.
+1. ✅ Politika privatnosti – stranica postoji; ⚠️ prije objave potvrditi kontakte i pravne detalje obrade.
+2. ✅ Uvjeti korištenja – stranica postoji; ⚠️ konačna poslovna i pravna provjera.
+3. ✅ Jasan CTA – aktivne poveznice na obrazac; ⚠️ javni poziv nakon potvrde broja.
+4. ✅ FAQ – početna i šest usluga imaju zasebna pitanja.
+5. ✅ `robots.txt` – demo blokiran; produkcija automatski otvara pristup nakon odobrenja.
+6. ✅ `sitemap.xml` – funkcija za demo i statički produkcijski sitemap testirani.
+7. ✅ Custom 404 – generiran i provjeren kao datoteka.
+8. ✅ ALT opisi – sve vidljive slike imaju smislene opise.
+9. ⚠️ GA4 pripremljen, Measurement ID i privola za stvarni račun još nisu konfigurirani.
+10. ✅ Meta title – 14 jedinstvenih naslova.
+11. ✅ Meta description – 14 jedinstvenih opisa.
+12. ✅/⚠️ OG/X Card oznake postoje; produkcijska OG putanja testirana, stvarna objava i WhatsApp dijeljenje još nisu testirani.
+13. ✅ Favicon – postojeći SVG ostao isti.
+14. ✅ Canonical – prisutan; probno apsolutiziran u produkcijskom testu.
+15. ✅ Cookie Consent – prihvaćanje, odbijanje i postavke, uz odgođeno učitavanje analitike.
+16. ⚠️ Responzivni CSS ostao je uglavnom isti; nova verzija nije ponovno vizualno potvrđena u pregledniku.
+17. ⚠️ Semantička struktura i pristupačnost poboljšane; potpuni WCAG 2.2 AA audit nije proveden.
+18. ⚠️ Validacija i poslužiteljska funkcija postoje; stvarni prijem poruke nije moguće potvrditi bez ključa.
+19. ✅ Sve lokalne interne veze provjerene; jedna vanjska poveznica na Google Maps nije mrežno testirana.
+20. ⚠️ AVIF resursi ostali optimizirani i statički kod minimalan; novu Lighthouse/Core Web Vitals analizu nije moguće potvrditi bez aktivnog weba.
 
-**Status projekta:** ✅ spreman za demonstraciju, ⚠️ nije još finaliziran za produkcijsko indeksiranje / slanje kontakt upita.
+## Podaci koji nedostaju i ne smiju se izmišljati
+
+1. Potvrda identiteta i opsega stvarnih usluga MIJAS LTD.
+2. **Telefon za javnu objavu**, javni **e-mail**, WhatsApp/Viber i ime osobe koja se javlja.
+3. Radno vrijeme, hitne intervencije, vikendi.
+4. Konkretna mjesta i najveća udaljenost izlaska na teren.
+5. Naplaćuje li se procjena i izlazak, rok dolaska, rok za ponudu, trajanje jamstva, R1 računi, tko nabavlja materijal.
+6. Stvarna godina iskustva i eventualna ovlaštenja.
+7. Stvarne reference, fotografije, mjesta i godine radova uz dopuštenje za objavu.
+8. Službena domena, GA4 ID i Web3Forms pristupni ključ.
+
+**Napomena:** Kako telefon i službeni e-mail nisu potvrđeni, javna stranica zasad ne prikazuje broj iz privatnog Meta leada. Usluga obrasca bez `WEB3FORMS_ACCESS_KEY` pošteno javlja neuspjeh, a ne lažnu potvrdu slanja. Prije prezentiranja kao potpuno funkcionalne produkcijske stranice to se mora dovršiti.
