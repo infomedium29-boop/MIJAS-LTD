@@ -46,3 +46,76 @@
 
 /* Call action is generated only for a client-confirmed number. */
 .mobile-call-header{display:none}@media(max-width:1050px){.mobile-call-header{display:flex;align-items:center;justify-content:center;width:42px;height:44px;margin-left:auto;color:#fff}.mobile-call-header svg{width:21px;height:21px}.mobile-call-header+.menu-toggle{margin-left:0}}
+
+/* ================================
+   Precision typography · 11 Nov 2026
+   Keep original colors, images, grids and intro unchanged.
+   ================================ */
+body{line-height:1.75}
+h1,h2,h3{line-height:1.22;letter-spacing:-.035em}
+h1 em,h2 em{letter-spacing:-.025em}
+main p{letter-spacing:.002em}
+main .lead{line-height:1.68!important}
+.section-heading h2,.about-copy h2,.process-head h2,.contact-cta h2,.page-hero h1,.contact-information h2,.split-feature h2,.service-detail-copy h2{line-height:1.23}
+.service-card h3,.process-card h3,.feature-copy h3,.project-card__body h3,.value-card h3{line-height:1.34;letter-spacing:-.025em}
+.faq-item summary{line-height:1.58}
+.contact-form label,.contact-form input:not([type=checkbox]),.contact-form select,.contact-form textarea{letter-spacing:.006em}
+
+/* Balanced, truly centered homepage hero — all screen widths. */
+.hero-content{align-items:center;justify-content:center;text-align:center;padding-bottom:74px}
+.hero-inner{width:100%;max-width:900px;margin:0 auto}
+.hero .eyebrow{justify-content:center}
+.hero h1{font-size:clamp(3.5rem,6.6vw,7rem);line-height:1.16;letter-spacing:-.048em;margin:26px auto 24px;max-width:900px;text-wrap:balance}
+.hero h1 em{letter-spacing:-.026em;line-height:inherit}
+.hero-description{max-width:630px;margin-left:auto;margin-right:auto;line-height:1.73;letter-spacing:.002em}
+.hero-actions{justify-content:center;flex-wrap:wrap;margin-top:33px;gap:14px}
+.hero-bottom{justify-content:center;text-align:center}
+.hero-scroll{position:absolute;right:0;top:20px}
+
+@media(max-width:1050px){
+ .hero h1{font-size:clamp(3.3rem,7.6vw,5.5rem)}
+}
+@media(max-width:720px){
+ .hero{height:auto;min-height:100svh;max-height:none}
+ .hero-content{height:auto;min-height:max(730px,100svh);padding-top:calc(var(--header) + 40px);padding-bottom:112px}
+ .hero-inner{max-width:560px;margin:0 auto}
+ .hero h1{font-size:clamp(2.65rem,10.7vw,4.05rem);line-height:1.2;letter-spacing:-.042em;margin:22px auto 20px;max-width:100%;text-wrap:balance}
+ .hero h1 em{display:block;white-space:normal;margin-top:.12em;letter-spacing:-.028em}
+ .hero-description{font-size:clamp(.96rem,3.8vw,1.1rem);max-width:480px;line-height:1.77;margin-bottom:0}
+ .hero-actions{justify-content:center;gap:11px;margin-top:26px}
+ .hero-actions .btn{min-height:52px;line-height:1.28;letter-spacing:.01em}
+ .hero-bottom{bottom:25px}
+ .page-hero h1{line-height:1.24;letter-spacing:-.035em}
+ .section-heading h2,.about-copy h2,.process-head h2{line-height:1.25}
+ .service-card h3,.project-card__body h3{line-height:1.34}
+}
+@media(max-width:420px){
+ .hero-content{min-height:max(695px,100svh);padding-top:calc(var(--header) + 27px);padding-bottom:100px}
+ .hero h1{font-size:clamp(2.5rem,10.6vw,2.95rem);line-height:1.22}
+ .hero h1 em{margin-top:.13em}
+ .hero-description{font-size:15px;line-height:1.76}
+ .hero-actions{gap:10px;margin-top:24px}
+ .hero-actions .btn{font-size:11px;padding:14px 15px}
+ .hero-bottom{bottom:22px}
+}
+
+/* Prevent long responsive copy from forcing a wider grid than the viewport. */
+@media(max-width:720px){
+ .about-grid{grid-template-columns:minmax(0,1fr)}
+ .about-grid>*{min-width:0}
+ .about-visual>img{max-width:100%}
+}
+
+/* Responsive grid intrinsic sizing: prevent images and long headings overflowing. */
+.about-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.split-feature{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.service-detail-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.about-grid>*,.split-feature>*,.service-detail-grid>*{min-width:0}
+.split-feature>img,.service-detail-image img{max-width:100%}
+.detail-points{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:720px){
+ .about-grid,.split-feature,.service-detail-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:420px){
+ .detail-points{grid-template-columns:minmax(0,1fr);gap:12px}
+}
