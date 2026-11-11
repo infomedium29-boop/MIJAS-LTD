@@ -120,7 +120,7 @@ def page(title,desc,path,body,active='',hero=False,extra_class=''):
  print('Created',p.relative_to(ROOT))
 
 def title_intro(top,h1,desc):
- return f'''<section class="page-hero"><div class="page-hero__geometry"></div><div class="container"><div class="breadcrumbs"><a href="/">Početna</a><span>/</span>{escape(top)}</div><h1>{h1}</h1><p>{desc}</p></div></section>'''
+ return f'''<section class="page-hero"><div class="page-hero__geometry"></div><div class="container"><h1>{h1}</h1><p>{desc}</p></div></section>'''
 
 def service_card(s,n):
  sl,name,desc,*_=s
