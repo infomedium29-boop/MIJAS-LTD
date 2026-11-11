@@ -119,3 +119,9 @@ main .lead{line-height:1.68!important}
 @media(max-width:420px){
  .detail-points{grid-template-columns:minmax(0,1fr);gap:12px}
 }
+
+/* Micro-labels removed throughout site. Headings remain visually balanced. */
+.hero-inner h1{margin-top:0}
+.section-heading h2,.about-copy h2,.page-hero h1,.process-head h2,.faq-left h2,.contact-information h2,.contact-form-panel h2,.service-detail-copy h2,.contact-cta h2,.notfound h1{margin-top:0}
+.project-card__body h3{margin-top:0}
+.feature-copy h3{margin-top:0}
