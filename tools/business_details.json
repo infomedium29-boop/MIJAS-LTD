@@ -3,5 +3,8 @@
   "public_email": "",
   "public_whatsapp": "",
   "public_working_hours": "",
-  "confirmed_service_towns": []
+  "confirmed_service_towns": [],
+  "floating_phone": "+385 91 509 0790",
+  "floating_whatsapp": "+385 91 509 0790",
+  "floating_whatsapp_call_url": ""
 }

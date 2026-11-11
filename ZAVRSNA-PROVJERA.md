@@ -68,3 +68,11 @@ Temelj: korisnički PDF „MIJAS LTD – nalog za izmjene teksta i tehničke isp
 8. Službena domena, GA4 ID i Web3Forms pristupni ključ.
 
 **Napomena:** Kako telefon i službeni e-mail nisu potvrđeni, javna stranica zasad ne prikazuje broj iz privatnog Meta leada. Usluga obrasca bez `WEB3FORMS_ACCESS_KEY` pošteno javlja neuspjeh, a ne lažnu potvrdu slanja. Prije prezentiranja kao potpuno funkcionalne produkcijske stranice to se mora dovršiti.
+
+## Dodatak – stalni kontaktni gumbi
+
+- ✅ Generator `tools/build.py` na sve rute dodaje dva plutajuća gumba, pri dnu desno, vertikalno: bakrena slušalica (`tel:+385915090790`) i zeleni WhatsApp (`https://wa.me/385915090790`).
+- ✅ CSS prilagođava veličinu gumbića mobitelima i desktopu, osigurava fokus tipkovnicom te ih skriva iza mobilnog izbornika kad je otvoren.
+- ✅ Statička provjera: oba gumba postoje na svih 14 glavnih ruta i na `404.html`, uz pravilan `href`.
+- ⚠️ WhatsApp gumb vodi u razgovor, iz kojeg korisnik može pokrenuti glasovni poziv. Izravni WhatsApp glasovni poziv s weba zahtijeva poslovnu funkciju pozivanja i podržanu/valjanu poveznicu; nije potvrđena za ovaj broj.
+- ⚠️ Vizualno testiranje u Chromiumu nije se moglo izvršiti u ovom okruženju zbog `ERR_BLOCKED_BY_ADMINISTRATOR`. Nakon objave provjeriti položaj gumbića i preklapanje s cookie bannerom.

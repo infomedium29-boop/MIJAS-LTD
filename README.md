@@ -78,3 +78,10 @@ Korisni sadržaji:
 ## Dizajn i mediji
 
 Postojeće fotografije i SVG logotip ostali su nepromijenjeni. Intro u `intro()` i svi `.intro-*` CSS stilovi ostali su isti. Font Inter nije bio učitan, pa je iz neispravne font liste uklonjen; stranica sada eksplicitno koristi postojeći sistemski font `Segoe UI` / Arial bez uključivanja vanjskog CDN-a. U CSS-u su dodatno prilagođeni isključivo selektori za promijenjenu HTML hijerarhiju i mreža skraćenog procesa. Pri objavi stvarnih referenci postojeće ilustrativne prikaze treba zamijeniti dopuštenim fotografijama klijenta.
+
+
+## Plutajući gumbi za brzi kontakt
+
+Na svim stranicama pri dnu desno prikazuju se dva stalna kontaktna gumba: telefonski poziv na `+385 91 509 0790` (`tel:+385915090790`) i WhatsApp razgovor za isti broj (`https://wa.me/385915090790`). WhatsApp razgovor omogućuje da korisnik zatim pritisne ikonu telefona za glasovni poziv; obična `wa.me` poveznica **ne pokreće automatski WhatsApp glasovni poziv**. Ako tvrtka dobije i potvrdi podržani WhatsApp poslovni *call link*, može ga unijeti u `floating_whatsapp_call_url` u `tools/business_details.json`.
+
+Brojevi plutajućih gumbića su namjenski u `floating_phone` i `floating_whatsapp`, odvojeni od općih podataka `public_phone` / `public_whatsapp`. Za promjenu broja uredite konfiguraciju i ponovno pokrenite build. Gumbi su dostupni na svim HTML rutama, a mobilni izbornik ih prekriva dok je otvoren.
