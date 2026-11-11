@@ -1,6 +1,6 @@
 # MIJAS LTD – web stranica (revizija prema PDF nalogu, 11.11.2026.)
 
-Statički HTML/CSS/JavaScript projekt s postojećim fotografijama, originalnom uvodnom animacijom, 14 HTML ruta i poslužiteljskom Cloudflare Pages Function za upite. Izvor sadržaja nalazi se u **`tools/build.py`**. Nemojte uređivati generirane HTML datoteke, jer ih generator prepisuje.
+Statički HTML/CSS/JavaScript projekt s optimiziranim ilustrativnim fotografijama, originalnom uvodnom animacijom, 14 HTML ruta i poslužiteljskom Cloudflare Pages Function za upite. Izvor sadržaja nalazi se u **`tools/build.py`**. Nemojte uređivati generirane HTML datoteke, jer ih generator prepisuje.
 
 ## Postavljanje na GitHub i Cloudflare Pages
 
@@ -85,3 +85,7 @@ Postojeće fotografije i SVG logotip ostali su nepromijenjeni. Intro u `intro()`
 Na svim stranicama pri dnu desno prikazuju se dva stalna kontaktna gumba: telefonski poziv na `+385 91 509 0790` (`tel:+385915090790`) i WhatsApp razgovor za isti broj (`https://wa.me/385915090790`). WhatsApp razgovor omogućuje da korisnik zatim pritisne ikonu telefona za glasovni poziv; obična `wa.me` poveznica **ne pokreće automatski WhatsApp glasovni poziv**. Ako tvrtka dobije i potvrdi podržani WhatsApp poslovni *call link*, može ga unijeti u `floating_whatsapp_call_url` u `tools/business_details.json`.
 
 Brojevi plutajućih gumbića su namjenski u `floating_phone` i `floating_whatsapp`, odvojeni od općih podataka `public_phone` / `public_whatsapp`. Za promjenu broja uredite konfiguraciju i ponovno pokrenite build. Gumbi su dostupni na svim HTML rutama, a mobilni izbornik ih prekriva dok je otvoren.
+
+## Ažuriranje galerije i fotografija usluga
+
+Na stranici `Radovi` četiri vizualno različite kartice prikazuju adaptaciju vodovodnih instalacija, podno grijanje, kotlovnicu i razdjelnike grijanja. Nove fotografije spremljene su lokalno u AVIF formatu. Relevantne fotografije povezane su i sa stranicama vodoinstalacija, grijanja, sanitarnih instalacija te adaptacija. One su ilustrativne i ne predstavljaju stvarne reference tvrtke bez klijentove potvrde.
