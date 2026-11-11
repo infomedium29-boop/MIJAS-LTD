@@ -142,3 +142,26 @@ body.menu-open .floating-contact{opacity:0;pointer-events:none}
 @media(max-width:720px){.floating-contact{right:calc(18px + env(safe-area-inset-right));bottom:calc(23px + env(safe-area-inset-bottom));gap:12px}.floating-contact__button{width:52px;height:52px}.floating-contact__button .icon{width:24px;height:24px}.floating-contact__whatsapp-icon{width:29px;height:29px}}
 @media(max-width:340px){.floating-contact{right:12px}.floating-contact__button{width:48px;height:48px}}
 @media(prefers-reduced-motion:reduce){.floating-contact,.floating-contact__button{transition:none}}
+
+/* Nov 2026: stable mobile navigation, fixed contact stacking and tap targets. */
+@media(max-width:1050px){
+ .site-header{z-index:110}
+ .mobile-nav{position:fixed;inset:var(--header) 0 0;z-index:109;height:auto;max-height:calc(100dvh - var(--header));overscroll-behavior:contain;overflow-y:auto;background:#0b1c27;-webkit-overflow-scrolling:touch;}
+ .site-header.is-scrolled + .mobile-nav{top:76px;bottom:0;max-height:calc(100dvh - 76px)}
+ .mobile-nav.is-open{display:block;opacity:1;visibility:visible;transform:none;pointer-events:auto}
+ .mobile-nav:not(.is-open){pointer-events:none}
+ body.menu-open .site-header{position:fixed;top:0}
+ body.menu-open .floating-contact{opacity:0;visibility:hidden;pointer-events:none}
+}
+@media(max-width:720px){
+ .site-header.is-scrolled + .mobile-nav{top:66px;max-height:calc(100dvh - 66px)}
+ .mobile-nav{padding-top:22px;padding-bottom:calc(38px + env(safe-area-inset-bottom))}
+}
+.floating-contact{position:fixed;z-index:100;right:24px;bottom:28px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.floating-contact__button{flex:0 0 56px;min-width:56px;max-width:56px;min-height:56px;max-height:56px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.floating-contact__button svg{width:26px;height:26px;min-width:26px;max-width:26px;min-height:26px;max-height:26px;display:block;flex-shrink:0}
+.floating-contact__button .floating-contact__whatsapp-icon{width:29px;height:29px;min-width:29px;min-height:29px;max-width:29px;max-height:29px}
+@media(max-width:720px){
+ .floating-contact{right:calc(16px + env(safe-area-inset-right));bottom:calc(22px + env(safe-area-inset-bottom))}
+ .floating-contact__button{flex-basis:52px;min-width:52px;max-width:52px;min-height:52px;max-height:52px}
+}

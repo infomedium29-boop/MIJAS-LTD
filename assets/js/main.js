@@ -36,6 +36,7 @@
     document.body.classList.remove('menu-open');
     mobile?.classList.remove('is-open');
     menu?.setAttribute('aria-expanded', 'false');
+    menu?.setAttribute('aria-label', 'Otvori navigaciju');
     mobile?.setAttribute('aria-hidden', 'true');
     if (menu) menu.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
   };
@@ -44,6 +45,7 @@
     document.body.classList.add('menu-open');
     mobile?.classList.add('is-open');
     menu.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-label', 'Zatvori navigaciju');
     mobile?.setAttribute('aria-hidden', 'false');
     menu.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
   });
