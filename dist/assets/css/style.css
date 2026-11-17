@@ -371,3 +371,29 @@ body.js-ready .intro{animation:none}
 @media(max-width:720px){.intro--brief .intro-logo-brief{width:min(93vw,560px);max-height:48svh}}
 @media(prefers-reduced-motion:reduce){.intro--brief{display:none!important}}
 .footer-brand .brand-owner-image--full{width:min(100%,365px);max-width:365px;height:auto}
+
+
+/* MIJAS LTD: centered call CTA in the mobile navigation, icon + label as one group */
+@media (max-width:1050px){
+  .mobile-nav .mobile-cta{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    align-self:center;
+    width:100%;
+    max-width:340px;
+    margin:18px auto 0;
+    padding-inline:16px;
+    gap:10px;
+    text-align:center;
+    white-space:normal;
+    min-height:54px;
+    line-height:1.35;
+  }
+  .mobile-nav .mobile-cta .icon{
+    display:block;
+    flex:0 0 17px;
+    width:17px;
+    height:17px;
+  }
+}
