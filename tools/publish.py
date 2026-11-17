@@ -15,7 +15,8 @@ for d in PAGES:
 for d in ['assets']:
  shutil.copytree(ROOT/d,OUT/d)
 # Originalni vlasnikov JPG/PNG izrez s bijelom podlogom čuva se samo u repozitoriju, ne u javnom deployu.
-(OUT/'assets/images/mijas-logo-izvorni.png').unlink(missing_ok=True)
+for old_name in ('mijas-logo-izvorni.png','mijas-logo-dark.png','mijas-logo-transparent.png'):
+ (OUT/'assets/images'/old_name).unlink(missing_ok=True)
 for file in ['index.html','404.html','_headers','_redirects','robots.txt','sitemap.xml']:
  src=ROOT/file
  if src.exists():shutil.copy2(src,OUT/file)
