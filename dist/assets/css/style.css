@@ -345,3 +345,29 @@ body.js-ready .intro{animation:none}
 .intro.is-playing .intro-line{animation:mijas-flow-accent .42s 2s ease-out forwards}
 .intro.is-exiting .intro-flow{transform:translateY(-3px);transition:transform .42s cubic-bezier(.22,.61,.36,1)}
 @media(prefers-reduced-motion:reduce){.intro{display:none!important}.intro-flow__complete{opacity:1!important}.intro-flow__svg,.intro-flow__glint{display:none!important}}
+
+
+/* MIJAS LTD: short 0.8-second logo intro, without stroke/drawing animations. */
+.intro.intro--brief{
+ animation:none!important;
+ transition:opacity .25s ease, visibility .25s ease!important;
+}
+.intro--brief .intro-bg{animation:none!important;transform:none!important}
+.intro--brief .intro-middle--brief{padding:18px;gap:0}
+.intro--brief .intro-logo-brief{
+ display:block;
+ width:min(85vw,750px);
+ max-width:100%;
+ height:auto;
+ max-height:50svh;
+ object-fit:contain;
+ background:transparent;
+ border:0;
+ box-shadow:none;
+ filter:drop-shadow(0 10px 23px rgba(0,0,0,.15));
+ animation:mijas-logo-show .13s ease-out both;
+}
+@keyframes mijas-logo-show{from{opacity:0}to{opacity:1}}
+@media(max-width:720px){.intro--brief .intro-logo-brief{width:min(93vw,560px);max-height:48svh}}
+@media(prefers-reduced-motion:reduce){.intro--brief{display:none!important}}
+.footer-brand .brand-owner-image--full{width:min(100%,365px);max-width:365px;height:auto}

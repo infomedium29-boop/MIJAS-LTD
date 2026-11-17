@@ -106,3 +106,13 @@ Na stranici `Radovi` četiri vizualno različite kartice prikazuju adaptaciju vo
 ## Uklonjena bijela pozadina (17.11.2026.)
 
 Logotip u navigaciji, footeru i introu koristi `assets/images/mijas-logo-dark.png`, PNG s transparentnom pozadinom. Izvorni vlasnikov dizajn i izvorni rez sačuvani su u datoteci `mijas-logo-izvorni.png`, a inačica s prozirnom podlogom i izvornom tamnom tipografijom u `mijas-logo-transparent.png`. Zbog čitljivosti na tamnoplavoj podlozi tekst je u varijanti `mijas-logo-dark.png` svijetao. Favicon ima transparentnu podlogu, a OG slika tamnu pozadinu bez bijelog panela.
+
+
+## Ažuriranje — 17.11.2026. (slovo j i intro 0,8 sekundi)
+
+U prethodnim odlomcima opisane su starije verzije animacije. Aktualna verzija:
+- **Intro bez iscrtavanja:** statički logotip vidljiv do 0,55 s, potom fade-out do 0,80 s.
+- **Footer i intro:** koriste `assets/images/mijas-logo-full-j-jasan-v5.webp`, pun i proziran logo s jasno vidljivim donjim dijelom slova j.
+- **Header:** zadržan postojeći već ispravljeni kompaktni logotip.
+- **Cloudflare Pages:** `python3 tools/deploy.py`, izlazna mapa `dist`.
+- Demo verzija ostaje blokirana za indeksiranje do potvrde vlasnika.

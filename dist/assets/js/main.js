@@ -7,36 +7,22 @@
   const config = window.MIJAS_CONFIG || {};
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const intro = $('#brand-intro');
-  const dismissIntro = () => {
-    if (!intro || intro.classList.contains('is-exiting')) return;
-    intro.classList.add('is-exiting');
-    intro.setAttribute('aria-hidden', 'true');
-    intro.inert = true;
-    try { sessionStorage.setItem('mijas-intro-played', '1'); } catch (_) {}
-    window.setTimeout(() => intro.remove(), 420);
-  };
   if (intro) {
     let played = false;
     try { played = sessionStorage.getItem('mijas-intro-played') === '1'; } catch (_) {}
     if (played || reduceMotion) {
       intro.remove();
     } else {
-      $('#intro-skip')?.addEventListener('click', dismissIntro);
-      // The logo artwork must be decoded before the reveal and its exit timer begin.
-      const logoImage = $('.intro-flow__complete', intro);
-      const beginIntro = () => {
-        if (!intro.isConnected || intro.classList.contains('is-exiting')) return;
-        intro.classList.add('is-playing');
-        window.setTimeout(dismissIntro, 2670);
-      };
-      if (logoImage?.decode) {
-        Promise.race([
-          logoImage.decode().catch(() => undefined),
-          new Promise(resolve => window.setTimeout(resolve, 900))
-        ]).then(() => window.requestAnimationFrame(() => window.requestAnimationFrame(beginIntro)));
-      } else {
-        window.requestAnimationFrame(beginIntro);
-      }
+      // 0–550 ms visible, 550–800 ms fade-out; then release the page.
+      // No drawing mask, image sequence, logo reflow, or separate entrance timer.
+      window.setTimeout(() => {
+        if (!intro.isConnected) return;
+        intro.classList.add('is-exiting');
+        intro.setAttribute('aria-hidden', 'true');
+        intro.inert = true;
+        try { sessionStorage.setItem('mijas-intro-played', '1'); } catch (_) {}
+        window.setTimeout(() => intro.remove(), 250);
+      }, 550);
     }
   }
   // Navigation
@@ -117,7 +103,7 @@
   if (banner) {
     const showCookie = () => { banner.hidden = false; if (analyticsChoice) analyticsChoice.checked = !!consent?.analytics; };
     if (!consent || !consent.updatedAt || Date.now() - consent.updatedAt > 180 * 86400000) {
-      window.setTimeout(showCookie, intro && intro.isConnected ? 2800 : 250);
+      window.setTimeout(showCookie, intro && intro.isConnected ? 850 : 250);
     } else initGA4();
     $$('[data-consent]', banner).forEach(button => button.addEventListener('click', () => {
       if (button.dataset.consent === 'accept') setConsent(canTrack());

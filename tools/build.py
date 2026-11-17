@@ -110,7 +110,7 @@ def logo(light=False, placement='header'):
  # Two responsive uses of the SAME original owner artwork: full lockup for footer,
  # compact emblem + original name for navigation. Exact emblem geometry retained.
  if placement == 'footer':
-  return '<a class="brand brand--owner brand--owner-footer" href="/" aria-label="MIJAS LTD – početna"><img class="brand-owner-image brand-owner-image--full" src="/assets/images/mijas-logo-full-premium-v3.webp" alt="MIJAS LTD — vodoinstalacije, grijanje, dizalice topline, servisi i montaža" width="1050" height="488" decoding="async"></a>'
+  return '<a class="brand brand--owner brand--owner-footer" href="/" aria-label="MIJAS LTD – početna"><img class="brand-owner-image brand-owner-image--full" src="/assets/images/mijas-logo-full-j-jasan-v5.webp" alt="MIJAS LTD — vodoinstalacije, grijanje, dizalice topline, servisi i montaža" width="1050" height="377" decoding="async"></a>'
  return '<a class="brand brand--owner brand--owner-header" href="/" aria-label="MIJAS LTD – početna"><img class="brand-owner-image brand-owner-image--header" src="/assets/images/mijas-header-cijeli-j-v4.webp" alt="MIJAS LTD" width="1200" height="346" decoding="async"></a>'
 
 def nav(active=''):
@@ -130,31 +130,9 @@ def footer():
 def cookie():
  return '''<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Postavke kolačića" aria-modal="false" hidden><div class="cookie-inner"><div><p class="cookie-title" style="font-size:20px;letter-spacing:-.04em;margin:7px 0 6px;font-weight:700">Kolačići</p><p>Koristimo nužnu lokalnu pohranu za rad stranice. Neobaveznu analitiku uključujemo samo uz vašu privolu. <a href="/politika-privatnosti/">Saznajte više.</a></p><label class="cookie-options" hidden><input type="checkbox" id="analytics-choice"> Dopusti analitičke kolačiće</label></div><div class="cookie-actions"><button class="btn btn--copper" data-consent="accept">Prihvati sve</button><button class="btn btn--dark-outline" data-consent="reject">Odbij neobavezne</button><button class="btn btn--text" data-consent="settings">Postavke kolačića</button></div></div></div>''' 
 def intro():
- # One original, unmodified owner logo. Animated SVG stroke masks follow the
- # emblem's curves and wordmark, instead of wiping a raster image with a rectangle.
- logo_url='/assets/images/mijas-logo-full-premium-v3.webp'
- # Every reveal references the identical high-quality raster art. Clip zones
- # keep the brush motion inside its own part of the original logo.
- masks = {
-  'water':  '<path pathLength="1" class="intro-brush intro-brush--water" d="M218 333 C136 342 83 310 83 234 C83 153 138 99 209 73 C185 133 140 175 140 237 C140 294 175 312 248 342" stroke-width="177"/>',
-  'flame':  '<path pathLength="1" class="intro-brush intro-brush--flame" d="M254 335 C315 296 316 230 291 181 C279 153 271 111 253 73 C357 160 354 277 289 360" stroke-width="168"/>',
-  'name':   '<path pathLength="1" class="intro-brush intro-brush--name" d="M351 270 C468 215 577 280 668 270 S851 280 997 262" stroke-width="176"/>',
-  'swoosh': '<path pathLength="1" class="intro-brush intro-brush--swoosh" d="M140 381 C316 336 452 320 585 345 S822 338 1033 366" stroke-width="103"/>',
-  'line1':  '<path pathLength="1" class="intro-brush intro-brush--line1" d="M203 411 C474 416 693 416 971 414" stroke-width="62"/>',
-  'line2':  '<path pathLength="1" class="intro-brush intro-brush--line2" d="M233 460 C475 462 688 460 958 460" stroke-width="61"/>'
- }
- clips={
-  'water':  '<rect x="0" y="15" width="267" height="377"/>',
-  'flame':  '<rect x="192" y="0" width="177" height="391"/>',
-  'name':   '<rect x="318" y="0" width="730" height="336"/>',
-  'swoosh': '<rect x="105" y="308" width="945" height="101"/>',
-  'line1':  '<rect x="174" y="391" width="868" height="50"/>',
-  'line2':  '<rect x="177" y="438" width="868" height="48"/>'
- }
- defs=''.join(f'<clipPath id="intro-zone-{p}">{clips[p]}</clipPath><mask id="intro-mask-{p}" maskUnits="userSpaceOnUse" x="0" y="0" width="1050" height="488"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round">{masks[p]}</g></mask>' for p in ('water','flame','name','swoosh','line1','line2'))
- layers=''.join(f'<g clip-path="url(#intro-zone-{p})"><image class="intro-art-layer" href="{logo_url}" width="1050" height="488" preserveAspectRatio="xMidYMid meet" mask="url(#intro-mask-{p})"/></g>' for p in ('water','flame','name','swoosh','line1','line2'))
- svg=f'<svg class="intro-flow__svg" viewBox="0 0 1050 488" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MIJAS LTD – vodoinstalacije, grijanje, dizalice topline, servisi i montaža"><defs>{defs}</defs>{layers}</svg>'
- return f'''<div class="intro" id="brand-intro" aria-label="MIJAS LTD – uvodna animacija"><div class="intro-bg"></div><div class="intro-shade"></div><div class="intro-middle"><div class="intro-flow">{svg}<img class="intro-flow__complete" src="{logo_url}" width="1050" height="488" alt="" aria-hidden="true" decoding="async" fetchpriority="high"/><span class="intro-flow__glint" aria-hidden="true"></span></div><span class="intro-line" aria-hidden="true"></span></div><button class="intro-skip" id="intro-skip" type="button">Preskoči uvod {icon('arrow')}</button></div>'''
+ # 0.8-second static logo presentation; no SVG drawing or letter-by-letter animation.
+ logo_url='/assets/images/mijas-logo-full-j-jasan-v5.webp'
+ return f'''<div class="intro intro--brief" id="brand-intro" aria-label="MIJAS LTD – kratki uvodni prikaz"><div class="intro-bg"></div><div class="intro-shade"></div><div class="intro-middle intro-middle--brief"><img class="intro-logo-brief" src="{logo_url}" width="1050" height="377" alt="MIJAS LTD – vodoinstalacije, grijanje, dizalice topline, servisi i montaža" fetchpriority="high" decoding="async"></div></div>'''
 
 def cta(title='Trebate ponudu?',subtitle='Napišite mjesto i vrstu radova u upitu.',variant='general'):
  return f'''<section class="contact-cta"><div class="contact-cta__glow"></div><div class="container contact-cta__inner"><div><h2>{escape(title)}</h2><p>{escape(subtitle)}</p></div>{contact_button()}</div></section>''' 
@@ -170,10 +148,10 @@ def page(title,desc,path,body,active='',hero=False,extra_class=''):
  safe_title=escape(title+' | MIJAS LTD')
  desc=escape(desc)
  og='/assets/images/og-cover.jpg'
- full='''<!doctype html><html lang="hr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#112634"><meta name="description" content="'''+desc+'''"><title>'''+safe_title+'''</title><link rel="canonical" href="'''+path+'''"><meta property="og:type" content="website"><meta property="og:locale" content="hr_HR"><meta property="og:site_name" content="MIJAS LTD"><meta property="og:title" content="'''+safe_title+'''"><meta property="og:description" content="'''+desc+'''"><meta property="og:image" content="'''+og+'''"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/png" href="/assets/images/favicon-original.png"><link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"><link rel="preload" as="image" type="image/avif" href="/assets/images/hero.avif" fetchpriority="high"><link rel="preload" as="image" type="image/webp" href="/assets/images/mijas-logo-full-premium-v3.webp" fetchpriority="high"><link rel="stylesheet" href="/assets/css/style.css?v=20261117-intro-flow-v6"><script src="/assets/js/config.js" defer></script><script src="/assets/js/main.js?v=20261117-intro-flow-v6" defer></script><script type="application/ld+json">'''+json.dumps({'@context':'https://schema.org','@type':['Plumber','HVACBusiness'],'name':'MIJAS LTD j.d.o.o.','legalName':'Mijas LTD j.d.o.o.','taxID':'40827941362','address':{'@type':'PostalAddress','streetAddress':'Širinec 36','postalCode':'10314','addressLocality':'Širinec','addressCountry':'HR'}, **({'telephone':PHONE_TEL} if PHONE_TEL else {}),**({'email':EMAIL} if EMAIL else {}),**({'areaServed':SERVICE_AREA} if SERVICE_AREA else {}),**({'openingHours':BUSINESS_HOURS} if BUSINESS_HOURS else {})},ensure_ascii=False)+'''</script></head><body class="'''+('home ' if hero else 'inner ')+extra_class+'''">'''+(intro() if hero else '')+'''<a class="skip-link" href="#main">Preskoči na sadržaj</a>'''+nav(active)+'''<main id="main">'''+body+'''</main>'''+footer()+floating_contacts()+cookie()+'''</body></html>'''
+ full='''<!doctype html><html lang="hr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#112634"><meta name="description" content="'''+desc+'''"><title>'''+safe_title+'''</title><link rel="canonical" href="'''+path+'''"><meta property="og:type" content="website"><meta property="og:locale" content="hr_HR"><meta property="og:site_name" content="MIJAS LTD"><meta property="og:title" content="'''+safe_title+'''"><meta property="og:description" content="'''+desc+'''"><meta property="og:image" content="'''+og+'''"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/png" href="/assets/images/favicon-original.png"><link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"><link rel="preload" as="image" type="image/avif" href="/assets/images/hero.avif" fetchpriority="high"><link rel="preload" as="image" type="image/webp" href="/assets/images/mijas-logo-full-j-jasan-v5.webp" fetchpriority="high"><link rel="stylesheet" href="/assets/css/style.css?v=20261117-logo-full-j-intro08-v7"><script src="/assets/js/config.js" defer></script><script src="/assets/js/main.js?v=20261117-logo-full-j-intro08-v7" defer></script><script type="application/ld+json">'''+json.dumps({'@context':'https://schema.org','@type':['Plumber','HVACBusiness'],'name':'MIJAS LTD j.d.o.o.','legalName':'Mijas LTD j.d.o.o.','taxID':'40827941362','address':{'@type':'PostalAddress','streetAddress':'Širinec 36','postalCode':'10314','addressLocality':'Širinec','addressCountry':'HR'}, **({'telephone':PHONE_TEL} if PHONE_TEL else {}),**({'email':EMAIL} if EMAIL else {}),**({'areaServed':SERVICE_AREA} if SERVICE_AREA else {}),**({'openingHours':BUSINESS_HOURS} if BUSINESS_HOURS else {})},ensure_ascii=False)+'''</script></head><body class="'''+('home ' if hero else 'inner ')+extra_class+'''">'''+(intro() if hero else '')+'''<a class="skip-link" href="#main">Preskoči na sadržaj</a>'''+nav(active)+'''<main id="main">'''+body+'''</main>'''+footer()+floating_contacts()+cookie()+'''</body></html>'''
  if not hero:
   full=full.replace('<link rel="preload" as="image" type="image/avif" href="/assets/images/hero.avif" fetchpriority="high">','')
-  full=full.replace('<link rel="preload" as="image" type="image/webp" href="/assets/images/mijas-logo-full-premium-v3.webp" fetchpriority="high">','')
+  full=full.replace('<link rel="preload" as="image" type="image/webp" href="/assets/images/mijas-logo-full-j-jasan-v5.webp" fetchpriority="high">','')
  p=ROOT/path.strip('/')/'index.html' if path!='/' else ROOT/'index.html'
  p.parent.mkdir(parents=True,exist_ok=True)
  p.write_text(full,encoding='utf-8')
