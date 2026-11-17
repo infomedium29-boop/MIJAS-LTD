@@ -27,7 +27,7 @@
       const beginIntro = () => {
         if (!intro.isConnected || intro.classList.contains('is-exiting')) return;
         intro.classList.add('is-playing');
-        window.setTimeout(dismissIntro, 2560);
+        window.setTimeout(dismissIntro, 2670);
       };
       if (logoImage?.decode) {
         Promise.race([

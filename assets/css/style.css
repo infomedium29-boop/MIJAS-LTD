@@ -320,3 +320,28 @@ body.js-ready .intro{animation:none}
  .intro-middle{padding:14px 12px}
 }
 @media(prefers-reduced-motion:reduce){.intro{display:none!important}.intro-flow__complete{opacity:1!important}.intro-flow__layer,.intro-flow__glint{display:none!important}}
+
+
+/* MIJAS LTD • premium path-following flow logo • 17.11.2026
+   Animates only the reveal masks, never distorts or reconstructs client artwork. */
+.intro-flow{position:relative;isolation:isolate;overflow:visible;transform:translateZ(0);filter:drop-shadow(0 12px 28px rgba(0,0,0,.16))}
+.intro-flow__svg{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible;pointer-events:none}
+.intro-flow__complete{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;opacity:0;pointer-events:none;animation:none}
+.intro-brush{stroke-dasharray:1;stroke-dashoffset:1;opacity:1}
+/* pathLength is an SVG attribute, repeated on the paths in HTML for uniform progress. */
+.intro-brush--water,.intro-brush--flame,.intro-brush--name,.intro-brush--swoosh,.intro-brush--line1,.intro-brush--line2{stroke-dasharray:1;stroke-dashoffset:1}
+.intro.is-playing .intro-brush--water{animation:mijas-path-draw .94s .09s cubic-bezier(.22,.7,.18,1) both}
+.intro.is-playing .intro-brush--flame{animation:mijas-path-draw .83s .23s cubic-bezier(.22,.72,.21,1) both}
+.intro.is-playing .intro-brush--name{animation:mijas-path-draw 1.06s .57s cubic-bezier(.22,.69,.2,1) both}
+.intro.is-playing .intro-brush--swoosh{animation:mijas-path-draw .78s 1.07s cubic-bezier(.18,.68,.24,1) both}
+.intro.is-playing .intro-brush--line1{animation:mijas-path-draw .54s 1.62s cubic-bezier(.17,.7,.22,1) both}
+.intro.is-playing .intro-brush--line2{animation:mijas-path-draw .48s 1.85s cubic-bezier(.17,.7,.22,1) both}
+@keyframes mijas-path-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.intro.is-playing .intro-flow__complete{animation:mijas-finish-glow .32s 2.12s ease-in-out forwards}
+@keyframes mijas-finish-glow{0%{opacity:0}100%{opacity:1}}
+.intro-flow__glint{inset:22% auto 18% 0;width:9%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06) 48%,rgba(255,166,87,.085) 55%,transparent);mix-blend-mode:screen}
+.intro.is-playing .intro-flow__glint{animation:mijas-soft-glint .86s 1.13s ease-in-out both}
+@keyframes mijas-soft-glint{0%{opacity:0;transform:translateX(-120%) skewX(-16deg)}30%{opacity:.6}75%{opacity:.36}100%{opacity:0;transform:translateX(1050%) skewX(-16deg)}}
+.intro.is-playing .intro-line{animation:mijas-flow-accent .42s 2s ease-out forwards}
+.intro.is-exiting .intro-flow{transform:translateY(-3px);transition:transform .42s cubic-bezier(.22,.61,.36,1)}
+@media(prefers-reduced-motion:reduce){.intro{display:none!important}.intro-flow__complete{opacity:1!important}.intro-flow__svg,.intro-flow__glint{display:none!important}}
