@@ -169,12 +169,12 @@ body.menu-open .floating-contact{opacity:0;pointer-events:none}
 /* MIJAS LTD — vlasnikov IZVORNI logotip i boje (bez redizajna logotipa) */
 :root{--copper:#d77b2d;--copper-light:#ffaf5c}
 .brand--owner{display:inline-flex;align-items:center;gap:0;min-width:0;line-height:0;flex:none}
-.brand-owner-image{display:block;width:180px;height:auto;max-width:none;border-radius:4px;background:#fff;object-fit:contain;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.brand-owner-image{display:block;width:180px;height:auto;max-width:none;object-fit:contain;background:transparent;border:0;border-radius:0;box-shadow:none}
 .site-header.is-scrolled .brand-owner-image{width:152px}
-.footer-brand .brand-owner-image{width:min(100%,285px);box-shadow:none;border-radius:3px}
-/* Originalna bijela podloga logotipa ostaje netaknuta radi čitljivosti tamnoplavih slova. */
-.intro-brand-reveal{width:min(74vw,615px);max-width:95%;box-shadow:0 22px 65px #0008;overflow:hidden;border-radius:3px;clip-path:inset(0 100% 0 0);animation:owner-logo-reveal 1.65s .24s cubic-bezier(.28,.8,.23,1) forwards}
-.intro-brand-reveal img{display:block;width:100%;height:auto;background:#fff}
+.footer-brand .brand-owner-image{width:min(100%,285px);box-shadow:none;border-radius:0}
+/* Transparentan logotip bez bijele pozadine; natpis osvijetljen samo u varijanti za tamnu podlogu. */
+.intro-brand-reveal{width:min(74vw,615px);max-width:95%;box-shadow:none;overflow:hidden;border-radius:0;clip-path:inset(0 100% 0 0);animation:owner-logo-reveal 1.65s .24s cubic-bezier(.28,.8,.23,1) forwards}
+.intro-brand-reveal img{display:block;width:100%;height:auto;background:transparent}
 @keyframes owner-logo-reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 .intro-line{background:#f28b36;animation:line-grow .45s 1.75s var(--ease) forwards}
 .hero h1 em{color:#ffa55c}

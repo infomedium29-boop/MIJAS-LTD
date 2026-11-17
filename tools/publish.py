@@ -14,6 +14,8 @@ for d in PAGES:
  shutil.copytree(ROOT/d,OUT/d)
 for d in ['assets']:
  shutil.copytree(ROOT/d,OUT/d)
+# Originalni vlasnikov JPG/PNG izrez s bijelom podlogom čuva se samo u repozitoriju, ne u javnom deployu.
+(OUT/'assets/images/mijas-logo-izvorni.png').unlink(missing_ok=True)
 for file in ['index.html','404.html','_headers','_redirects','robots.txt','sitemap.xml']:
  src=ROOT/file
  if src.exists():shutil.copy2(src,OUT/file)

@@ -77,7 +77,7 @@ Korisni sadržaji:
 
 ## Dizajn i mediji
 
-Fotografije postojećih radova ostale su na istim mjestima. **Prethodni SVG monogram zamijenjen je točno vlasnikovim logotipom** izdvojenim iz dostavljene slike bez redizajna. Original je u `tools/vlasnikov-logo-originalna-slika.png`, a kopija za prikaz u `assets/images/mijas-logo-izvorni.png`. Uvodna animacija zadržava svoju tehničku pozadinu i trajanje približno 2,5–3 s; originalni logo otkriva se postupno. Font Inter nije bio učitan, pa je iz neispravne font liste uklonjen; stranica sada eksplicitno koristi postojeći sistemski font `Segoe UI` / Arial bez uključivanja vanjskog CDN-a. U CSS-u su dodatno prilagođeni isključivo selektori za promijenjenu HTML hijerarhiju i mreža skraćenog procesa. Pri objavi stvarnih referenci postojeće ilustrativne prikaze treba zamijeniti dopuštenim fotografijama klijenta.
+Fotografije postojećih radova ostale su na istim mjestima. **Prethodni SVG monogram zamijenjen je točno vlasnikovim logotipom** izdvojenim iz dostavljene slike bez redizajna. Original je u `tools/vlasnikov-logo-originalna-slika.png`, a neizmijenjeni izrez u `assets/images/mijas-logo-izvorni.png`. Za prikaz se koristi prozirna verzija `mijas-logo-dark.png` s kontrastnim svijetlim natpisom na tamnoj pozadini; svi oblici, plamen, kapljica i boje simbola ostali su isti. Uvodna animacija zadržava svoju tehničku pozadinu i trajanje približno 2,5–3 s; originalni logo otkriva se postupno. Font Inter nije bio učitan, pa je iz neispravne font liste uklonjen; stranica sada eksplicitno koristi postojeći sistemski font `Segoe UI` / Arial bez uključivanja vanjskog CDN-a. U CSS-u su dodatno prilagođeni isključivo selektori za promijenjenu HTML hijerarhiju i mreža skraćenog procesa. Pri objavi stvarnih referenci postojeće ilustrativne prikaze treba zamijeniti dopuštenim fotografijama klijenta.
 
 
 ## Plutajući gumbi za brzi kontakt
@@ -92,7 +92,7 @@ Na stranici `Radovi` četiri vizualno različite kartice prikazuju adaptaciju vo
 
 ## Izmjene 17.11.2026.
 
-- Vlasnikov logo prikazuje se u navigaciji, footeru i introu, **bez precrtavanja**; zadržana je bijela pozadina originala radi čitljivosti tamnoplavog natpisa.
+- Vlasnikov logo prikazuje se u navigaciji, footeru i introu, **bez precrtavanja** i bez bijelog pravokutnika. Na tamnim pozadinama tamnoplava slova dobila su svijetlu kontrastnu varijantu; simbol i oblici ostaju nepromijenjeni.
 - Iz vlasnikove slike preuzete su glavne usluge: **Vodoinstalacije, Grijanje, Dizalice topline, Servisi, Montaža**.
 - Dodane su tri zasebne podstranice `/usluge/dizalice-topline/`, `/usluge/servisi/`, `/usluge/montaza/` s vlastitim sadržajem, FAQ-om i SEO opisom.
 - Zadržane su prethodne stranice za klimatizaciju, odvodnju, sanitarne instalacije i adaptacije.
@@ -102,3 +102,7 @@ Na stranici `Radovi` četiri vizualno različite kartice prikazuju adaptaciju vo
 - Stranica **ostaje demo** bez Google indeksiranja i bez lažnih referenci. Kontakt forma zahtijeva stvarni `WEB3FORMS_ACCESS_KEY` i probno slanje.
 
 **Napomena:** Na vlasnikovom vizualu nisu navedeni brandovi dizalica topline, servisna ovlaštenja, jamstva ni radno vrijeme. Na webu se te informacije ne tvrde bez potvrde.
+
+## Uklonjena bijela pozadina (17.11.2026.)
+
+Logotip u navigaciji, footeru i introu koristi `assets/images/mijas-logo-dark.png`, PNG s transparentnom pozadinom. Izvorni vlasnikov dizajn i izvorni rez sačuvani su u datoteci `mijas-logo-izvorni.png`, a inačica s prozirnom podlogom i izvornom tamnom tipografijom u `mijas-logo-transparent.png`. Zbog čitljivosti na tamnoplavoj podlozi tekst je u varijanti `mijas-logo-dark.png` svijetao. Favicon ima transparentnu podlogu, a OG slika tamnu pozadinu bez bijelog panela.
