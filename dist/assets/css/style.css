@@ -247,3 +247,76 @@ body.menu-open .floating-contact{opacity:0;pointer-events:none}
  .site-header.is-scrolled .brand-owner-image--header{width:155px;max-height:55px}
  .header-inner{gap:9px}
 }
+
+
+/* MIJAS LTD — synchronized 2.95 s owner-logo flow reveal (November 2026).
+   Every image layer is the identical owner artwork; no relettering, redrawing,
+   white plate or redesign. Timings start on .is-playing after image decode. */
+body.js-ready .intro{animation:none}
+.intro{transition:opacity .40s cubic-bezier(.22,.61,.36,1), visibility .40s}
+.intro .intro-bg{animation:none;transform:scale(1.045);will-change:transform}
+.intro.is-playing .intro-bg{animation:mijas-intro-bg 2.65s cubic-bezier(.2,.6,.25,1) both}
+.intro-middle{z-index:2;gap:0}
+.intro-flow{position:relative;isolation:isolate;width:min(83vw,660px);aspect-ratio:1050/488;flex:none;overflow:visible;filter:drop-shadow(0 10px 30px rgba(0,0,0,.13))}
+.intro-flow__layer,.intro-flow__complete{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;background:transparent;border:none;border-radius:0;pointer-events:none;backface-visibility:hidden;will-change:clip-path,opacity}
+/* All pieces are exact overlays of the same PNG-derived WebP artwork.
+   Their masks overlap deliberately, so there can be no geometric jumping. */
+.intro-flow__emblem{clip-path:polygon(0 0,0 0,0 77.7%,0 77.7%)}
+.intro-flow__name{clip-path:polygon(30% 0,30% 0,30% 68%,30% 68%)}
+.intro-flow__swoosh{clip-path:polygon(11% 58%,11% 58%,11% 77.7%,11% 77.7%)}
+.intro-flow__tagline-one{clip-path:polygon(16% 77.7%,16% 77.7%,16% 91.5%,16% 91.5%)}
+.intro-flow__tagline-two{clip-path:polygon(17% 91.5%,17% 91.5%,17% 100%,17% 100%)}
+.intro-flow__complete{opacity:0}
+.intro.is-playing .intro-flow__emblem{animation:mijas-flow-emblem .87s .12s cubic-bezier(.16,.78,.2,1) both}
+.intro.is-playing .intro-flow__name{animation:mijas-flow-name 1.02s .53s cubic-bezier(.17,.77,.2,1) both}
+.intro.is-playing .intro-flow__swoosh{animation:mijas-flow-swoosh .84s 1.06s cubic-bezier(.2,.72,.2,1) both}
+.intro.is-playing .intro-flow__tagline-one{animation:mijas-flow-tagline-one .56s 1.50s cubic-bezier(.23,.75,.25,1) both}
+.intro.is-playing .intro-flow__tagline-two{animation:mijas-flow-tagline-two .49s 1.75s cubic-bezier(.25,.73,.26,1) both}
+.intro.is-playing .intro-flow__complete{animation:mijas-flow-perfect .12s 2.24s ease-out forwards}
+.intro-flow__glint{position:absolute;z-index:3;inset:7% auto 17% 0;width:12%;pointer-events:none;opacity:0;transform:translateX(-160%) skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(239,247,255,.085) 44%,rgba(255,174,92,.105) 50%,transparent);mix-blend-mode:screen}
+.intro.is-playing .intro-flow__glint{animation:mijas-flow-glint 1.02s .79s ease-in-out both}
+.intro .intro-line{background:linear-gradient(90deg,transparent,#f6a052,transparent);width:0;height:1px;opacity:0;margin-top:clamp(10px,2.2vw,22px);animation:none;flex:none}
+.intro.is-playing .intro-line{animation:mijas-flow-accent .42s 1.94s ease-out forwards}
+.intro.is-exiting .intro-flow{transform:translateY(-3px);transition:transform .40s cubic-bezier(.22,.61,.36,1)}
+@keyframes mijas-flow-emblem{
+  0%{clip-path:polygon(0 0,0 0,0 77.7%,0 77.7%)}
+  53%{clip-path:polygon(0 0,25% 0,19% 77.7%,0 77.7%)}
+  100%{clip-path:polygon(0 0,35% 0,35% 77.7%,0 77.7%)}
+}
+@keyframes mijas-flow-name{
+  0%{clip-path:polygon(30% 0,30% 0,30% 68%,30% 68%)}
+  52%{clip-path:polygon(30% 0,71% 0,65% 68%,30% 68%)}
+  100%{clip-path:polygon(30% 0,100% 0,100% 68%,30% 68%)}
+}
+@keyframes mijas-flow-swoosh{
+  0%{clip-path:polygon(11% 58%,11% 58%,11% 77.7%,11% 77.7%)}
+  55%{clip-path:polygon(11% 58%,63% 58%,58% 77.7%,11% 77.7%)}
+  100%{clip-path:polygon(11% 58%,100% 58%,100% 77.7%,11% 77.7%)}
+}
+@keyframes mijas-flow-tagline-one{
+  from{clip-path:polygon(16% 77.7%,16% 77.7%,16% 91.5%,16% 91.5%)}
+  to{clip-path:polygon(16% 77.7%,100% 77.7%,100% 91.5%,16% 91.5%)}
+}
+@keyframes mijas-flow-tagline-two{
+  from{clip-path:polygon(17% 91.5%,17% 91.5%,17% 100%,17% 100%)}
+  to{clip-path:polygon(17% 91.5%,100% 91.5%,100% 100%,17% 100%)}
+}
+@keyframes mijas-flow-perfect{to{opacity:1}}
+@keyframes mijas-flow-glint{
+  0%{opacity:0;transform:translateX(-160%) skewX(-18deg)}
+  12%{opacity:.55}
+  78%{opacity:.42}
+  100%{opacity:0;transform:translateX(900%) skewX(-18deg)}
+}
+@keyframes mijas-flow-accent{
+  from{opacity:0;width:0}
+  55%{opacity:.68}
+  to{opacity:.8;width:64px}
+}
+@keyframes mijas-intro-bg{from{transform:scale(1.045)}to{transform:scale(1)}}
+@media(max-width:720px){
+ .intro-flow{width:min(92vw,530px)}
+ .intro .intro-line{margin-top:14px}
+ .intro-middle{padding:14px 12px}
+}
+@media(prefers-reduced-motion:reduce){.intro{display:none!important}.intro-flow__complete{opacity:1!important}.intro-flow__layer,.intro-flow__glint{display:none!important}}

@@ -13,7 +13,7 @@
     intro.setAttribute('aria-hidden', 'true');
     intro.inert = true;
     try { sessionStorage.setItem('mijas-intro-played', '1'); } catch (_) {}
-    window.setTimeout(() => intro.remove(), 500);
+    window.setTimeout(() => intro.remove(), 420);
   };
   if (intro) {
     let played = false;
@@ -22,7 +22,21 @@
       intro.remove();
     } else {
       $('#intro-skip')?.addEventListener('click', dismissIntro);
-      window.setTimeout(dismissIntro, 2450);
+      // The logo artwork must be decoded before the reveal and its exit timer begin.
+      const logoImage = $('.intro-flow__complete', intro);
+      const beginIntro = () => {
+        if (!intro.isConnected || intro.classList.contains('is-exiting')) return;
+        intro.classList.add('is-playing');
+        window.setTimeout(dismissIntro, 2560);
+      };
+      if (logoImage?.decode) {
+        Promise.race([
+          logoImage.decode().catch(() => undefined),
+          new Promise(resolve => window.setTimeout(resolve, 900))
+        ]).then(() => window.requestAnimationFrame(() => window.requestAnimationFrame(beginIntro)));
+      } else {
+        window.requestAnimationFrame(beginIntro);
+      }
     }
   }
   // Navigation
