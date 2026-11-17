@@ -1,6 +1,6 @@
-# MIJAS LTD – web stranica (revizija prema PDF nalogu, 11.11.2026.)
+# MIJAS LTD – web stranica (vlasnikov originalni logotip i nove usluge, 17.11.2026.)
 
-Statički HTML/CSS/JavaScript projekt s optimiziranim ilustrativnim fotografijama, originalnom uvodnom animacijom, 14 HTML ruta i poslužiteljskom Cloudflare Pages Function za upite. Izvor sadržaja nalazi se u **`tools/build.py`**. Nemojte uređivati generirane HTML datoteke, jer ih generator prepisuje.
+Statički HTML/CSS/JavaScript projekt s optimiziranim ilustrativnim fotografijama, originalnom uvodnom animacijom, 17 glavnih HTML ruta (uz 404) i poslužiteljskom Cloudflare Pages Function za upite. Izvor sadržaja nalazi se u **`tools/build.py`**. Nemojte uređivati generirane HTML datoteke, jer ih generator prepisuje.
 
 ## Postavljanje na GitHub i Cloudflare Pages
 
@@ -24,7 +24,7 @@ U `tools/business_details.json` popunjavajte isključivo podatke koje je tvrtka 
 - `public_working_hours`: točno radno vrijeme.
 - `confirmed_service_towns`: samo potvrđena mjesta rada, za strukturirane podatke i budući tekst.
 
-Broj i e-mail iz Meta lead obrasca **nisu automatski službeni kontakti**. Dok ih vlasnik ne odobri, stranica ima ispravan CTA „Pošaljite upit” koji vodi na obrazac, bez lažnih kontakata.
+Broj **+385 91 509 0790** javno je istaknut na vlasnikovom dostavljenom vizualu te se koristi u zaglavlju, kontaktu i plutajućim gumbima. Poslovni e-mail i radno vrijeme još nisu potvrđeni, pa se ne izmišljaju.
 
 Treba potvrditi i rok odgovora, rok dolaska, naplatu izlaska, jamstva, izdavanje računa, nabavu materijala, sve stvarne usluge te fotografije izvedenih radova. Ništa od toga nije izmišljeno.
 
@@ -77,7 +77,7 @@ Korisni sadržaji:
 
 ## Dizajn i mediji
 
-Postojeće fotografije i SVG logotip ostali su nepromijenjeni. Intro u `intro()` i svi `.intro-*` CSS stilovi ostali su isti. Font Inter nije bio učitan, pa je iz neispravne font liste uklonjen; stranica sada eksplicitno koristi postojeći sistemski font `Segoe UI` / Arial bez uključivanja vanjskog CDN-a. U CSS-u su dodatno prilagođeni isključivo selektori za promijenjenu HTML hijerarhiju i mreža skraćenog procesa. Pri objavi stvarnih referenci postojeće ilustrativne prikaze treba zamijeniti dopuštenim fotografijama klijenta.
+Fotografije postojećih radova ostale su na istim mjestima. **Prethodni SVG monogram zamijenjen je točno vlasnikovim logotipom** izdvojenim iz dostavljene slike bez redizajna. Original je u `tools/vlasnikov-logo-originalna-slika.png`, a kopija za prikaz u `assets/images/mijas-logo-izvorni.png`. Uvodna animacija zadržava svoju tehničku pozadinu i trajanje približno 2,5–3 s; originalni logo otkriva se postupno. Font Inter nije bio učitan, pa je iz neispravne font liste uklonjen; stranica sada eksplicitno koristi postojeći sistemski font `Segoe UI` / Arial bez uključivanja vanjskog CDN-a. U CSS-u su dodatno prilagođeni isključivo selektori za promijenjenu HTML hijerarhiju i mreža skraćenog procesa. Pri objavi stvarnih referenci postojeće ilustrativne prikaze treba zamijeniti dopuštenim fotografijama klijenta.
 
 
 ## Plutajući gumbi za brzi kontakt
@@ -89,3 +89,16 @@ Brojevi plutajućih gumbića su namjenski u `floating_phone` i `floating_whatsap
 ## Ažuriranje galerije i fotografija usluga
 
 Na stranici `Radovi` četiri vizualno različite kartice prikazuju adaptaciju vodovodnih instalacija, podno grijanje, kotlovnicu i razdjelnike grijanja. Nove fotografije spremljene su lokalno u AVIF formatu. Relevantne fotografije povezane su i sa stranicama vodoinstalacija, grijanja, sanitarnih instalacija te adaptacija. One su ilustrativne i ne predstavljaju stvarne reference tvrtke bez klijentove potvrde.
+
+## Izmjene 17.11.2026.
+
+- Vlasnikov logo prikazuje se u navigaciji, footeru i introu, **bez precrtavanja**; zadržana je bijela pozadina originala radi čitljivosti tamnoplavog natpisa.
+- Iz vlasnikove slike preuzete su glavne usluge: **Vodoinstalacije, Grijanje, Dizalice topline, Servisi, Montaža**.
+- Dodane su tri zasebne podstranice `/usluge/dizalice-topline/`, `/usluge/servisi/`, `/usluge/montaza/` s vlastitim sadržajem, FAQ-om i SEO opisom.
+- Zadržane su prethodne stranice za klimatizaciju, odvodnju, sanitarne instalacije i adaptacije.
+- Glavni hero, početna, kontaktni telefon, footer i katalog usluga usklađeni su s dostavljenim vizualom.
+- Iz originalne slike izrezana je favicon ikona; OG slika koristi isti originalni logotip.
+- Vlasnikov kontakt s vizuala +385 91 509 0790 postavljen je na telefonske poveznice i WhatsApp razgovor.
+- Stranica **ostaje demo** bez Google indeksiranja i bez lažnih referenci. Kontakt forma zahtijeva stvarni `WEB3FORMS_ACCESS_KEY` i probno slanje.
+
+**Napomena:** Na vlasnikovom vizualu nisu navedeni brandovi dizalica topline, servisna ovlaštenja, jamstva ni radno vrijeme. Na webu se te informacije ne tvrde bez potvrde.

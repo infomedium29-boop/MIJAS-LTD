@@ -165,3 +165,50 @@ body.menu-open .floating-contact{opacity:0;pointer-events:none}
  .floating-contact{right:calc(16px + env(safe-area-inset-right));bottom:calc(22px + env(safe-area-inset-bottom))}
  .floating-contact__button{flex-basis:52px;min-width:52px;max-width:52px;min-height:52px;max-height:52px}
 }
+
+/* MIJAS LTD — vlasnikov IZVORNI logotip i boje (bez redizajna logotipa) */
+:root{--copper:#d77b2d;--copper-light:#ffaf5c}
+.brand--owner{display:inline-flex;align-items:center;gap:0;min-width:0;line-height:0;flex:none}
+.brand-owner-image{display:block;width:180px;height:auto;max-width:none;border-radius:4px;background:#fff;object-fit:contain;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.site-header.is-scrolled .brand-owner-image{width:152px}
+.footer-brand .brand-owner-image{width:min(100%,285px);box-shadow:none;border-radius:3px}
+/* Originalna bijela podloga logotipa ostaje netaknuta radi čitljivosti tamnoplavih slova. */
+.intro-brand-reveal{width:min(74vw,615px);max-width:95%;box-shadow:0 22px 65px #0008;overflow:hidden;border-radius:3px;clip-path:inset(0 100% 0 0);animation:owner-logo-reveal 1.65s .24s cubic-bezier(.28,.8,.23,1) forwards}
+.intro-brand-reveal img{display:block;width:100%;height:auto;background:#fff}
+@keyframes owner-logo-reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.intro-line{background:#f28b36;animation:line-grow .45s 1.75s var(--ease) forwards}
+.hero h1 em{color:#ffa55c}
+.hero-inner{max-width:990px}
+.hero h1{max-width:990px;font-size:clamp(3.2rem,5.7vw,6.7rem)}
+.hero-description{max-width:695px}
+/* Osigurati da originalni logo stane i uz sve poveznice u navigaciji. */
+@media(min-width:1051px) and (max-width:1320px){
+ .brand-owner-image{width:155px}
+ .main-nav{gap:18px}
+ .header-inner{gap:14px}
+ .header-cta{padding:11px 12px;font-size:11px;margin-left:0}
+}
+@media(max-width:1050px){
+ .brand-owner-image{width:154px}
+ .site-header.is-scrolled .brand-owner-image{width:137px}
+ .header-inner{gap:14px}
+}
+@media(max-width:720px){
+ .brand-owner-image{width:145px}
+ .site-header.is-scrolled .brand-owner-image{width:128px}
+ .intro-brand-reveal{width:min(92vw,525px)}
+ .hero h1{font-size:clamp(2.45rem,9.7vw,4rem);line-height:1.23}
+ .hero h1 em{display:block;white-space:normal;margin-top:.14em}
+}
+@media(max-width:360px){
+ .brand-owner-image{width:122px}
+ .site-header.is-scrolled .brand-owner-image{width:116px}
+ .hero h1{font-size:clamp(2.2rem,10vw,2.65rem)}
+}
+@media(prefers-reduced-motion:reduce){.intro-brand-reveal{animation:none;clip-path:none}}
+
+/* Opaque mobile nav and clear stacking when visitor changes consent. */
+@media(max-width:1050px){
+ .mobile-nav.is-open{background:#0b1c27!important;opacity:1!important}
+ body.menu-open #cookie-banner{display:none!important}
+}
