@@ -20,7 +20,9 @@ for p in root.rglob('index.html'):
  for target in (p,):
   content=target.read_text(encoding='utf-8')
   content=re.sub(r'(<link rel="canonical" href=")[^"]+("\s*>)',lambda m:m[1]+html.escape(origin+path,quote=True)+m[2],content)
-  content=re.sub(r'(<meta property="og:image" content=")[^"]+("\s*>)',lambda m:m[1]+html.escape(origin,quote=True)+'/assets/images/og-cover.jpg'+m[2],content)
+  content=re.sub(r'(<meta property="og:image" content=")[^"]+("\s*>)',lambda m:m[1]+html.escape(origin,quote=True)+'/assets/images/mijas-link-preview-20261117.jpg'+m[2],content)
+  content=re.sub(r'(<meta property="og:image:secure_url" content=")[^"]+("\s*>)',lambda m:m[1]+html.escape(origin,quote=True)+'/assets/images/mijas-link-preview-20261117.jpg'+m[2],content)
+  content=re.sub(r'(<meta name="twitter:image" content=")[^"]+("\s*>)',lambda m:m[1]+html.escape(origin,quote=True)+'/assets/images/mijas-link-preview-20261117.jpg'+m[2],content)
   content=re.sub(r'<meta property="og:url" content="[^"]+">','',content)
   content=content.replace('<meta name="twitter:card" content="summary_large_image">',f'<meta property="og:url" content="{html.escape(origin+path,quote=True)}"><meta name="twitter:card" content="summary_large_image">')
   target.write_text(content,encoding='utf-8')
